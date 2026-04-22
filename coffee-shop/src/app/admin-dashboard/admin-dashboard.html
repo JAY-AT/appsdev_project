@@ -1,0 +1,157 @@
+<!-- Navigation -->
+<nav class="bg-brown text-white p-4 shadow-lg">
+  <div class="max-w-7xl mx-auto flex justify-between items-center">
+    <h1 class="text-2xl font-bold">Admin Dashboard - Café Delight</h1>
+    <div class="flex items-center space-x-4">
+      <button class="hover:text-soft-orange transition-colors">Settings</button>
+      <button (click)="logout()" class="bg-soft-orange text-brown px-4 py-2 rounded-lg hover:bg-soft-orange/80 transition-colors">Logout</button>
+    </div>
+  </div>
+</nav>
+
+<div class="flex min-h-screen bg-cream">
+  <!-- Sidebar -->
+  <div class="w-64 bg-white shadow-xl">
+    <div class="p-6">
+      <h2 class="text-xl font-bold text-brown mb-6">Menu</h2>
+      <nav class="space-y-2">
+        <button class="w-full text-left px-4 py-2 text-brown hover:bg-soft-orange hover:text-white rounded-lg transition-colors">Dashboard</button>
+        <button class="w-full text-left px-4 py-2 text-brown hover:bg-soft-orange hover:text-white rounded-lg transition-colors">Products</button>
+        <button class="w-full text-left px-4 py-2 text-brown hover:bg-soft-orange hover:text-white rounded-lg transition-colors">Orders</button>
+        <button class="w-full text-left px-4 py-2 text-brown hover:bg-soft-orange hover:text-white rounded-lg transition-colors">Users</button>
+        <button class="w-full text-left px-4 py-2 text-brown hover:bg-soft-orange hover:text-white rounded-lg transition-colors">Analytics</button>
+      </nav>
+    </div>
+  </div>
+
+  <!-- Main Content -->
+  <div class="flex-1 p-8">
+    <!-- Analytics Cards -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+      <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-brown/70 text-sm">Total Sales</p>
+            <p class="text-2xl font-bold text-brown">₱{{ totalSales.toFixed(2) }}</p>
+          </div>
+          <div class="w-12 h-12 bg-soft-orange/20 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-soft-orange" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-brown/70 text-sm">Orders Today</p>
+            <p class="text-2xl font-bold text-brown">{{ ordersToday }}</p>
+          </div>
+          <div class="w-12 h-12 bg-muted-green/20 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-muted-green" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M7 2v11h3v9l7-12h-4l4-8z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-brown/70 text-sm">Active Users</p>
+            <p class="text-2xl font-bold text-brown">{{ activeUsers }}</p>
+          </div>
+          <div class="w-12 h-12 bg-brown/20 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-brown" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white rounded-2xl p-6 shadow-lg">
+        <div class="flex items-center justify-between">
+          <div>
+            <p class="text-brown/70 text-sm">Avg. Order Value</p>
+            <p class="text-2xl font-bold text-brown">₱{{ avgOrderValue.toFixed(2) }}</p>
+          </div>
+          <div class="w-12 h-12 bg-soft-orange/20 rounded-full flex items-center justify-center">
+            <svg class="w-6 h-6 text-soft-orange" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
+            </svg>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Product Management -->
+    <div class="bg-white rounded-2xl shadow-lg p-6 mb-8">
+      <div class="flex justify-between items-center mb-6">
+        <h3 class="text-2xl font-bold text-brown">Product Management</h3>
+        <button class="bg-brown text-white px-4 py-2 rounded-lg hover:bg-brown/80 transition-colors">
+          Add Product
+        </button>
+      </div>
+      <div class="overflow-x-auto">
+        <table class="w-full">
+          <thead>
+            <tr class="border-b border-brown/20">
+              <th class="text-left py-3 px-4 text-brown font-semibold">Product</th>
+              <th class="text-left py-3 px-4 text-brown font-semibold">Category</th>
+              <th class="text-left py-3 px-4 text-brown font-semibold">Price</th>
+              <th class="text-left py-3 px-4 text-brown font-semibold">Status</th>
+              <th class="text-left py-3 px-4 text-brown font-semibold">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let product of products" class="border-b border-brown/10">
+              <td class="py-3 px-4">
+                <div class="flex items-center">
+                  <img [src]="product.image" [alt]="product.name" class="w-10 h-10 rounded-lg mr-3">
+                  <span class="text-brown font-medium">{{ product.name }}</span>
+                </div>
+              </td>
+              <td class="py-3 px-4 text-brown/70">{{ product.category }}</td>
+              <td class="py-3 px-4 text-brown font-medium">₱{{ product.price.toFixed(2) }}</td>
+              <td class="py-3 px-4">
+                <span class="bg-muted-green/20 text-muted-green px-2 py-1 rounded-full text-sm">Active</span>
+              </td>
+              <td class="py-3 px-4">
+                <button class="text-soft-orange hover:text-soft-orange/80 mr-2">Edit</button>
+                <button class="text-red-500 hover:text-red-600">Delete</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Order Management -->
+    <div class="bg-white rounded-2xl shadow-lg p-6">
+      <h3 class="text-2xl font-bold text-brown mb-6">Recent Orders</h3>
+      <div class="space-y-4">
+        <div *ngFor="let order of orders.slice(0, 5)" class="flex items-center justify-between p-4 bg-cream/50 rounded-lg">
+          <div class="flex items-center">
+            <div class="w-10 h-10 bg-brown rounded-full flex items-center justify-center text-white font-bold mr-4">J</div>
+            <div>
+              <p class="text-brown font-medium">Order #{{ order.id }}</p>
+              <p class="text-brown/70 text-sm">User ID: {{ order.userId }} • {{ order.items.length }} items</p>
+            </div>
+          </div>
+          <div class="text-right">
+            <p class="text-brown font-medium">₱{{ order.total.toFixed(2) }}</p>
+            <select
+              [value]="order.status"
+              (change)="updateOrderStatus(order.id, $any($event.target).value)"
+              class="text-sm border border-brown/30 rounded px-2 py-1">
+              <option value="pending">Pending</option>
+              <option value="completed">Completed</option>
+              <option value="cancelled">Cancelled</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
