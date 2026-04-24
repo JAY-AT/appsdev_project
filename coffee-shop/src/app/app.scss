@@ -1,0 +1,25 @@
+.app-shell {
+  min-height: 100vh;
+}
+
+.app-shell__content {
+  min-height: 100vh;
+  transition:
+    opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+    transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: opacity, transform;
+}
+
+.app-shell.is-transitioning .app-shell__content {
+  opacity: 0.92;
+  transform: translateY(4px) scale(0.996);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .app-shell__content,
+  .app-shell.is-transitioning .app-shell__content {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}

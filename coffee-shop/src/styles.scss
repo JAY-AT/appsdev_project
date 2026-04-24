@@ -44,9 +44,9 @@
   --radius-full: 9999px;  /* Pills, avatar circles */
 
   /* TRANSITIONS — Purpose-built durations */
-  --transition-fast: 100ms ease;
-  --transition-base: 180ms ease;
-  --transition-slow: 320ms ease;
+  --transition-fast: 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-base: 320ms cubic-bezier(0.22, 1, 0.36, 1);
+  --transition-slow: 460ms cubic-bezier(0.22, 1, 0.36, 1);
 
   /* TYPE SCALE — Defined pixel values (no magic numbers) */
   --text-xs: 11px;
@@ -112,6 +112,11 @@ body {
     radial-gradient(circle at 50% 100%, rgba(255, 206, 138, 0.1), transparent 24%),
     var(--color-canvas);
   overflow-x: hidden;
+  transition:
+    background-color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 240ms cubic-bezier(0.22, 1, 0.36, 1),
+    box-shadow 240ms cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 body.dark {
@@ -179,6 +184,55 @@ select {
   }
 }
 
+@keyframes orbitSpin {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(360deg) scale(1.04);
+  }
+}
+
+@keyframes orbitSpinReverse {
+  from {
+    transform: rotate(0deg) scale(1);
+  }
+  to {
+    transform: rotate(-360deg) scale(1.05);
+  }
+}
+
+@keyframes steamRise {
+  0%,
+  100% {
+    transform: translateY(10px) scaleY(0.95);
+    opacity: 0.2;
+  }
+  50% {
+    transform: translateY(-16px) scaleY(1.08);
+    opacity: 0.85;
+  }
+}
+
+@keyframes gridDrift {
+  from {
+    transform: translate3d(0, 0, 0);
+  }
+  to {
+    transform: translate3d(-84px, -84px, 0);
+  }
+}
+
+@keyframes shimmerSweep {
+  0%,
+  65% {
+    transform: translateX(-140%);
+  }
+  100% {
+    transform: translateX(140%);
+  }
+}
+
 /* ============================================================
    GLOBAL INTERACTION STYLES
    ============================================================ */
@@ -200,21 +254,44 @@ a,
 .page-reveal {
   opacity: 0;
   transform: translateY(24px);
-  animation: fadeInUp 0.9s ease-out forwards;
+  animation: fadeInUp 0.10s ease-out forwards;
 }
 
 .page-reveal.delay-1 {
-  animation-delay: 0.15s;
+  animation-delay: 0.20s;
 }
 
 .page-reveal.delay-2 {
-  animation-delay: 0.28s;
+  animation-delay: 0.38s;
 }
 
 .page-reveal.delay-3 {
-  animation-delay: 0.42s;
+  animation-delay: 0.52s;
 }
 
 .page-reveal.delay-4 {
-  animation-delay: 0.55s;
+  animation-delay: 0.65s;
+}
+
+.landing-shell {
+  .motion-reveal {
+    opacity: 0;
+    transform: translateY(28px) scale(0.98);
+    filter: blur(4px);
+    transition:
+      opacity 8ms ease,
+      transform 800ms ease,
+      filter 800ms ease;
+  }
+
+  .motion-reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+
+  .hero-card {
+    border: 1px solid var(--color-border-strong);
+    box-shadow: var(--shadow-sm);
+  }
 }
