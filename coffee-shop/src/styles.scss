@@ -1,15 +1,220 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@600;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-body {
-  font-family: 'Poppins', sans-serif;
-  margin: 0;
-  padding: 0;
+/* ============================================================
+   DESIGN TOKENS — Comprehensive system for consistent styling
+   ============================================================ */
+:root {
+  color-scheme: light;
+
+  /* BRAND PALETTE (10% accent rule) */
+  --color-brand: #ffa07a;                    /* Soft orange — primary CTA, active states */
+  --color-brand-hover: #ff8c5a;              /* Slightly darker on hover */
+  --color-brand-light: rgba(255, 160, 122, 0.16); /* 10% tint for backgrounds */
+
+  /* SURFACES (60% canvas, 30% secondary) — Light mode */
+  --color-canvas: #fef5f0;                   /* Light cream — page background (60%) */
+  --color-surface: rgba(171, 106, 64, 0.08); /* Subtle brown overlay for cards (30%) */
+  --color-surface-hover: rgba(171, 106, 64, 0.12); /* Elevated surface on interaction */
+
+  /* TEXT — Light mode */
+  --color-text-primary: #3d2817;             /* Dark brown for primary text */
+  --color-text-secondary: rgba(61, 40, 23, 0.7); /* Muted for secondary text */
+  --color-text-muted: rgba(61, 40, 23, 0.55);    /* Very muted for tertiary text */
+
+  /* BORDERS — Must be visibly darker than background (10%+ contrast) */
+  --color-border: rgba(171, 106, 64, 0.18); /* Visible border for separation */
+  --color-border-strong: rgba(171, 106, 64, 0.28); /* Emphasized borders on hover */
+
+  /* SHADOWS — Subtle, never dark (max 0.09 opacity) */
+  --shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05), 0 1px 2px rgba(0, 0, 0, 0.03);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.07), 0 2px 4px rgba(0, 0, 0, 0.04);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.09), 0 4px 8px rgba(0, 0, 0, 0.05);
+
+  /* BORDER RADIUS — Consistent scale (no arbitrary values) */
+  --radius-xs: 4px;       /* Tiny chips, inner badges */
+  --radius-sm: 6px;       /* Buttons, small inputs */
+  --radius-md: 10px;      /* Cards, panels */
+  --radius-lg: 14px;      /* Modals, drawers, large cards */
+  --radius-xl: 18px;      /* Hero blocks, feature sections */
+  --radius-full: 9999px;  /* Pills, avatar circles */
+
+  /* TRANSITIONS — Purpose-built durations */
+  --transition-fast: 100ms ease;
+  --transition-base: 180ms ease;
+  --transition-slow: 320ms ease;
+
+  /* TYPE SCALE — Defined pixel values (no magic numbers) */
+  --text-xs: 11px;
+  --text-sm: 13px;
+  --text-base: 15px;
+  --text-md: 17px;
+  --text-lg: 20px;
+  --text-xl: 24px;
+  --text-2xl: 30px;
+  --text-3xl: 40px;
+
+  /* SPACING — For consistent padding/margins */
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
 }
 
+/* ============================================================
+    DARK MODE OVERRIDE
+    ============================================================ */
+body.dark {
+  color-scheme: dark;
+
+  /* BRAND PALETTE */
+  --color-brand: #ffa07a;
+  --color-brand-hover: #ff8c5a;
+  --color-brand-light: rgba(255, 160, 122, 0.16);
+
+  /* SURFACES (60% canvas, 30% secondary) — Dark mode */
+  --color-canvas: #100b07;
+  --color-surface: rgba(255, 255, 255, 0.08);
+  --color-surface-hover: rgba(255, 255, 255, 0.12);
+
+  /* TEXT — Dark mode */
+  --color-text-primary: #f9f4ee;
+  --color-text-secondary: rgba(249, 244, 238, 0.72);
+  --color-text-muted: rgba(249, 244, 238, 0.55);
+
+  /* BORDERS — Dark mode */
+  --color-border: rgba(255, 255, 255, 0.12);
+  --color-border-strong: rgba(255, 255, 255, 0.18);
+}
+
+/* ============================================================
+   GLOBAL BASE STYLES
+   ============================================================ */
 html {
   scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  min-height: 100vh;
+  color: var(--color-text-primary);
+  background: radial-gradient(circle at 15% 10%, rgba(255, 160, 122, 0.14), transparent 18%),
+    radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.06), transparent 26%),
+    radial-gradient(circle at 50% 100%, rgba(255, 206, 138, 0.1), transparent 24%),
+    var(--color-canvas);
+  overflow-x: hidden;
+}
+
+body.dark {
+  background: radial-gradient(circle at 15% 10%, rgba(255, 160, 122, 0.12), transparent 18%),
+    radial-gradient(circle at 85% 15%, rgba(255, 255, 255, 0.05), transparent 26%),
+    var(--color-canvas);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+::selection {
+  background: var(--color-brand-light);
+  color: var(--color-canvas);
+}
+
+/* ============================================================
+   ANIMATION KEYFRAMES
+   ============================================================ */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes floatPulse {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-8px);
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 24px rgba(255, 160, 122, 0.12);
+  }
+  50% {
+    box-shadow: 0 0 36px rgba(255, 160, 122, 0.2);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
+}
+
+/* ============================================================
+   GLOBAL INTERACTION STYLES
+   ============================================================ */
+button,
+a,
+[role="button"] {
+  transition:
+    color var(--transition-base),
+    background-color var(--transition-base),
+    border-color var(--transition-base),
+    box-shadow var(--transition-base),
+    transform var(--transition-base),
+    opacity var(--transition-base);
+}
+
+/* ============================================================
+   PAGE REVEAL (STAGGERED ANIMATIONS)
+   ============================================================ */
+.page-reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  animation: fadeInUp 0.9s ease-out forwards;
+}
+
+.page-reveal.delay-1 {
+  animation-delay: 0.15s;
+}
+
+.page-reveal.delay-2 {
+  animation-delay: 0.28s;
+}
+
+.page-reveal.delay-3 {
+  animation-delay: 0.42s;
+}
+
+.page-reveal.delay-4 {
+  animation-delay: 0.55s;
 }

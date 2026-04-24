@@ -1,114 +1,103 @@
-<div class="min-h-screen bg-gradient-to-br from-cream via-beige to-soft-orange flex items-center justify-center p-4">
-  <div class="w-full max-w-4xl bg-white/10 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden">
-    <div class="grid grid-cols-1 lg:grid-cols-2">
-      <!-- Left Side - Branding -->
-      <div class="bg-brown/20 p-12 flex flex-col justify-center items-center text-center lg:text-left">
-        <h1 class="text-4xl lg:text-5xl font-bold text-brown mb-6">Welcome Back</h1>
-        <p class="text-xl text-brown/80 mb-8">Sign in to your account to continue your coffee journey</p>
-        <div class="space-y-4">
-          <div class="flex items-center space-x-4">
-            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-brown" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
-              </svg>
+<div class="login-shell min-h-screen grid place-items-center overflow-hidden bg-[#120b07] px-4 py-8 text-white">
+  <div class="login-panel relative w-full max-w-6xl overflow-hidden rounded-[42px] border border-white/10 bg-white/10 shadow-[0_40px_120px_rgba(0,0,0,0.25)] backdrop-blur-3xl">
+    <div class="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(255,160,122,0.16),_transparent_25%)]"></div>
+    <div class="absolute right-[-80px] top-1/4 h-56 w-56 rounded-full bg-soft-orange/10 blur-3xl"></div>
+    <div class="grid grid-cols-1 lg:grid-cols-[1.1fr_0.9fr]">
+      <div class="brand-panel relative overflow-hidden px-10 py-12 sm:px-12 sm:py-16">
+        <div class="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_top_right,_rgba(255,255,255,0.18),_transparent_18%)]"></div>
+        <div class="relative z-10 space-y-8">
+          <span class="badge-pill">Premium café access</span>
+          <h1 class="text-4xl font-bold tracking-tight">Welcome Back</h1>
+          <p class="max-w-md text-base leading-7 text-white/70">Sign in to continue your coffee journey and unlock curated drink experiences designed for the future.</p>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <div class="feature-card">
+              <span>Q</span>
+              <div>
+                <p class="text-sm uppercase tracking-[0.24em] text-white/60">Quality</p>
+                <p class="font-semibold">Artisan Brews</p>
+              </div>
             </div>
-            <span class="text-brown">Premium Quality</span>
-          </div>
-          <div class="flex items-center space-x-4">
-            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-brown" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/>
-              </svg>
+            <div class="feature-card">
+              <span>E</span>
+              <div>
+                <p class="text-sm uppercase tracking-[0.24em] text-white/60">Mood</p>
+                <p class="font-semibold">Cinematic Glow</p>
+              </div>
             </div>
-            <span class="text-brown">Fast Delivery</span>
-          </div>
-          <div class="flex items-center space-x-4">
-            <div class="w-12 h-12 bg-white/20 rounded-full flex items-center justify-center">
-              <svg class="w-6 h-6 text-brown" fill="currentColor" viewBox="0 0 24 24">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-              </svg>
-            </div>
-            <span class="text-brown">Loyalty Rewards</span>
           </div>
         </div>
       </div>
 
-      <!-- Right Side - Login Form -->
-      <div class="p-12">
-        <div class="mb-8">
-          <div class="flex justify-center mb-6">
-            <div class="flex bg-white/20 rounded-lg p-1">
-              <button
-                (click)="loginType = 'user'"
-                [class.active]="loginType === 'user'"
-                class="px-6 py-2 rounded-md transition-all duration-300">
-                Customer
-              </button>
-              <button
-                (click)="loginType = 'admin'"
-                [class.active]="loginType === 'admin'"
-                class="px-6 py-2 rounded-md transition-all duration-300">
-                Admin
-              </button>
-            </div>
+      <div class="form-shell relative z-10 bg-[#0f0906]/90 px-8 py-10 sm:px-12 sm:py-16">
+        <div class="flex justify-center mb-8">
+          <div class="toggle-group rounded-full bg-white/10 p-1 shadow-[0_24px_50px_rgba(0,0,0,0.16)]">
+            <button
+              (click)="loginType = 'user'"
+              [class.active]="loginType === 'user'"
+              class="login-tab px-6 py-3 rounded-full">
+              Customer
+            </button>
+            <button
+              (click)="loginType = 'admin'"
+              [class.active]="loginType === 'admin'"
+              class="login-tab px-6 py-3 rounded-full">
+              Admin
+            </button>
           </div>
-          <h2 class="text-3xl font-bold text-brown text-center mb-2">
-            {{ loginType === 'user' ? 'Customer' : 'Admin' }} Login
-          </h2>
-          <p class="text-brown/70 text-center">Enter your credentials to access your account</p>
+        </div>
+
+        <div class="text-center mb-8">
+          <h2 class="text-3xl font-bold text-white">{{ loginType === 'user' ? 'Customer' : 'Admin' }} Login</h2>
+          <p class="text-sm text-white/70">Enter your credentials to access your account</p>
         </div>
 
         <form (ngSubmit)="onSubmit()" class="space-y-6">
           <div>
-            <label for="email" class="block text-sm font-medium text-brown mb-2">Email Address</label>
+            <label for="email" class="block text-sm font-medium text-white/80 mb-2">Email Address</label>
             <input
               type="email"
               id="email"
               [(ngModel)]="email"
               name="email"
               required
-              class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-soft-orange focus:border-transparent transition-all duration-300"
+              class="input-field"
               placeholder="Enter your email">
           </div>
 
           <div>
-            <label for="password" class="block text-sm font-medium text-brown mb-2">Password</label>
+            <label for="password" class="block text-sm font-medium text-white/80 mb-2">Password</label>
             <input
               type="password"
               id="password"
               [(ngModel)]="password"
               name="password"
               required
-              class="w-full px-4 py-3 bg-white/20 backdrop-blur-sm border border-white/30 rounded-xl focus:outline-none focus:ring-2 focus:ring-soft-orange focus:border-transparent transition-all duration-300"
+              class="input-field"
               placeholder="Enter your password">
           </div>
 
-          <div class="flex items-center justify-between">
-            <label class="flex items-center">
-              <input type="checkbox" class="rounded border-white/30 text-soft-orange focus:ring-soft-orange">
-              <span class="ml-2 text-sm text-brown">Remember me</span>
+          <div class="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <label class="flex items-center gap-2 text-sm text-white/70">
+              <input type="checkbox" class="checkbox-field">
+              Remember me
             </label>
-            <a href="#" class="text-sm text-soft-orange hover:text-soft-orange/80 transition-colors">Forgot password?</a>
+            <a href="#" class="text-sm text-soft-orange hover:text-soft-orange/90 transition-colors">Forgot password?</a>
           </div>
 
           <button
             type="submit"
             [disabled]="isLoading"
-            class="w-full bg-brown text-white py-3 px-4 rounded-xl hover:bg-brown/80 transition-all duration-300 transform hover:scale-105 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed">
-            <span *ngIf="isLoading" class="inline-block animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></span>
+            class="submit-button w-full">
+            <span *ngIf="isLoading" class="loader"></span>
             {{ isLoading ? 'Signing In...' : 'Sign In' }}
           </button>
         </form>
 
-        <div *ngIf="errorMessage" class="mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded-lg">
+        <div *ngIf="errorMessage" class="mt-5 rounded-3xl border border-red-400/30 bg-red-50/80 p-4 text-sm text-red-700">
           {{ errorMessage }}
         </div>
 
-        <div class="mt-6 text-center">
-          <p class="text-brown/70">Don't have an account?
-            <a href="#" class="text-soft-orange hover:text-soft-orange/80 transition-colors font-medium">Sign up</a>
-          </p>
-        </div>
+        <p class="mt-8 text-center text-sm text-white/60">Don't have an account? <a href="#" class="text-soft-orange font-medium hover:text-soft-orange/90">Sign up</a></p>
       </div>
     </div>
   </div>
